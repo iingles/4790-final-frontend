@@ -1,0 +1,13 @@
+subscription newPost {
+    newPost {
+     _id
+     content
+     createdAt
+     creator {
+         _id
+         firstName
+         lastName
+         photoSm
+     }   
+    }
+}

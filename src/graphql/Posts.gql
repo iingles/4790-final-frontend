@@ -1,0 +1,16 @@
+query posts {
+  posts {
+    posts {
+      _id
+      content
+      createdAt
+      creator {
+          _id
+          firstName
+          lastName
+          photoSm
+      }
+      updatedAt
+    }
+  }
+}

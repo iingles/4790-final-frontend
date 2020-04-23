@@ -1,0 +1,8 @@
+mutation createPost ($content: String!, $creatorId: String!) {
+    createPost (postInput: { content: $content, creatorId: $creatorId }) {
+        creator {
+            _id
+        },
+        content
+    }
+}
