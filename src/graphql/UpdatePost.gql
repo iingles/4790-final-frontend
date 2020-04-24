@@ -1,0 +1,8 @@
+mutation updatePost ($id: ID!, $creatorId: String!, $content: String!) {
+    updatePost (id: $id, postInput: { creatorId: $creatorId, content: $content}) {
+        creator {
+            _id
+        },
+        content
+    }
+}

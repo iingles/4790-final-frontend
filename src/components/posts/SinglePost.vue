@@ -40,7 +40,7 @@
             :token="token"
             />
             <Like
-            :post="post"
+            :postId="post._id"
             :userId="userId"
             :token="token"
             />
@@ -112,6 +112,10 @@ export default {
         .btn {
             font-size: 2rem;
             color: #a1a1a1;
+
+            .badge-light {
+                color: #a1a1a1!important;
+            }
 
             @media screen and (min-width: 992px) {
                 font-size: 1.4rem;

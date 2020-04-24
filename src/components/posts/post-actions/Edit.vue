@@ -1,16 +1,29 @@
 <template>
-    <div>
-        <b-btn @click="showModal" variant="link"><b-icon icon="pencil"></b-icon>Edit</b-btn>
-        <b-modal hide-footer :ref="`${postId}-modal-edit`"  centered title="Edit Post">
-            <b-form>
-                <b-textarea
-                v-model="postData.content"
-                >
-                </b-textarea>
-                 <b-button class="align-self-end" @click="editHandler(postData)" pill variant="primary">Post</b-button>
-            </b-form>
-        </b-modal>
-    </div>
+  <div>
+    <b-btn @click="showModal" variant="link"><b-icon icon="pencil"></b-icon>Edit</b-btn>
+    <b-modal hide-footer :ref="`${postId}-modal-edit`"  centered title="Edit Post">
+       <ApolloMutation
+        :mutation="require('../../../graphql/UpdatePost.gql')"
+        :variables="{
+          id: postId,
+          creatorId: postData.creatorId,
+          content: postData.content
+        }"
+      >
+        <template v-slot="{ mutate }">
+          <b-form @submit.prevent="mutate() && hideModal()">
+              <b-textarea
+              v-model="postData.content"
+              >
+              </b-textarea>
+              <template v-if="content !== postData.content && postData.content !== ''">
+                <b-button type="submit" class="align-self-end" pill variant="primary">Post</b-button>
+              </template>
+          </b-form>
+        </template>
+      </ApolloMutation>
+    </b-modal>
+  </div>
 </template>
 
 <script>
@@ -57,7 +70,7 @@ export default {
 
       const graphqlQuery = {
         query: `
-          mutation {
+          Mutation {
             updatePost(id:"${vm.postId}", postInput: {content:"${vm.postData.content}", creatorId:"${vm.postData.creatorId}"}) {
                 creator {
                     _id

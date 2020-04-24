@@ -2,7 +2,7 @@
   <b-col cols="12" sm="12" md="11" lg="6" class="main-content mr-0 ml-0">
     <b-container fluid>
       <b-row>
-        <b-container fluid class="profile-banner">
+        <b-container fluid class="profile-banner" :style="`background: url(${user.backgroundImageUrl}) no-repeat`">
           <b-row>
             <b-col id="profile-picture" cols="5" sm="5" md="4" lg="4">
               <b-img-lazy fluid-grow :src="`${user.photoLg}`" rounded="circle" alt="photo of person"></b-img-lazy>
@@ -27,7 +27,7 @@
           </b-row>
         </b-col>
 
-        <b-col cols="12" sm="12" md="5" lg="3" justify-self="end">
+        <b-col cols="12" sm="12" md="5" lg="3" class="mt-2" justify-self="end">
           <template v-if="loggedInUser === this.$route.params.id">
               <EditProfile
               :user="user"
@@ -36,6 +36,7 @@
           <template v-else>
                 <FollowToggle
                   :isFollowing="followers.find(el => el._id === loggedInUser) ? true : false"
+                  :profileId="user._id"
                 />
           </template>
         </b-col>
@@ -75,7 +76,6 @@ export default {
       // Fetch the user info for the profile page
       let userData
       const vm = this
-
       const graphQLQuery = {
         query: `{
       getUser(_id:"${this.$route.params.id}") {
@@ -121,6 +121,8 @@ export default {
           vm.followers = resData.data.getUser.followers
           vm.following = resData.data.getUser.following
           vm.user = userData
+
+          vm.user.backgroundImageUrl = 'https://isaac_j_ingles.keybase.pub/user-banners/mario-banner.jpg'
         })
         .catch(err => {
           console.log(err)

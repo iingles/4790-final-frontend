@@ -1,0 +1,17 @@
+query getUser ($_id: String!) {
+    getUser(_id:$_id ) {
+        _id
+        status
+        bio
+        firstName
+        lastName
+        followers {
+            _id
+        }
+        following {
+            _id
+        }
+        photoLg
+        
+    }
+}

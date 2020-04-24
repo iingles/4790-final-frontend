@@ -1,10 +1,10 @@
 <template>
     <div>
         <template v-if="!isFollowing">
-            <b-button @click="changeFollow(()=>this.$route.params.id, 'add')" pill variant="outline-primary">Follow</b-button>
+            <b-button @click="changeFollow(profileId, 'add')" pill variant="outline-primary">Follow</b-button>
         </template>
         <template v-else>
-            <b-button @click="changeFollow(()=>this.$route.params.id, 'remove')" pill variant="outline-primary">Unfollow</b-button>
+            <b-button @click="changeFollow(profileId, 'remove')" pill variant="outline-primary">Unfollow</b-button>
         </template>
     </div>
 </template>
@@ -12,10 +12,12 @@
 <script>
 export default {
   props: {
-    isFollowing: Boolean
+    isFollowing: Boolean,
+    profileId: String
   },
   methods: {
     changeFollow (id, act) {
+      console.log(id, act, localStorage.getItem('userId'))
       const graphQLQuery = {
         query: `
           mutation {

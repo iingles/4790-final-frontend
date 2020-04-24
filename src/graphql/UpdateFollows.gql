@@ -1,0 +1,10 @@
+mutation updateFollows ($id: ID!, $_id:ID!, $action: String!)  {
+    updateFollows(id: $id, followInput: { _id: $_id, action: $action }) {
+        followers {
+            _id
+        }
+        following {
+            _id
+        }
+    }
+}

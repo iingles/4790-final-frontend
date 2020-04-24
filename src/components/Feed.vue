@@ -8,6 +8,10 @@
           :document="require('../graphql/NewPostSub.gql')"
           :updateQuery="onPostAdded"
         />
+        <ApolloSubscribeToMore
+          :document="require('../graphql/UpdatePostSub.gql')"
+          :updateQuery="onPostUpdated"
+        />
         <template v-slot="{ result: { error, data }, isLoading }">
           <!-- Loading -->
           <div v-if="isLoading" class="loading apollo">Loading...</div>
@@ -59,6 +63,11 @@ export default {
       vm.feedStack = [newPost, ...vm.feedStack]
 
       return vm.feedStack
+    },
+    onPostUpdated (previousPostData, { subscriptionData }) {
+      // const vm = this
+      // const updatedPost = subscriptionData.data.updatePost
+      console.log(previousPostData)
     }
   }
 }
