@@ -9,9 +9,10 @@
           creatorId: postData.creatorId,
           content: postData.content
         }"
+        @done="hideModal()"
       >
         <template v-slot="{ mutate }">
-          <b-form @submit.prevent="mutate() && hideModal()">
+          <b-form @submit.prevent="mutate()">
               <b-textarea
               v-model="postData.content"
               >
