@@ -5,6 +5,7 @@
       <b-row d-flex flex-direction-column>
         <b-col cols="12" sm="1" md="1" lg="2">
           <MainMenu v-if="this.$store.getters.user.auth" />
+          {{ this.$store.getters.user.auth }}
         </b-col>
           <router-view />
         <b-col cols="12" sm="12" md="11" lg="4">

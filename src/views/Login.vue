@@ -15,10 +15,10 @@
               <template v-slot="{ mutate }">
                 <b-form @submit.prevent="mutate()" @keyup.enter="mutate()">
                   <b-form-group id="input-group-1" label="Email" label-for="email">
-                    <input id="email" type="email" v-model="authData.email" />
+                    <input class="pt-2 pb-2 pl-2" id="email" type="email" v-model="authData.email" />
                   </b-form-group>
                   <b-form-group id="input-group-2" label="Password" label-for="password">
-                    <input id="password" type="password" v-model="authData.password" />
+                    <input class="pt-2 pb-2 pl-2" id="password" type="password" v-model="authData.password" />
                   </b-form-group>
                   <b-button variant="link" href="/account-recovery">Forgot Password?</b-button>
                   <b-button type="submit" pill variant="outline-primary">log in</b-button>

@@ -1,9 +1,9 @@
 <template>
-    <b-btn variant="link">
-        <b-icon v-if="liked" icon="heart-fill" style="color: #fc4343!important"></b-icon>
-        <b-icon v-else icon="heart"></b-icon>
-        <b-badge variant="light">{{ likes }}</b-badge>
-    </b-btn>
+  <b-btn  variant="link">
+    <b-icon v-if="liked" icon="heart-fill" style="color: #fc4343!important"></b-icon>
+    <b-icon v-else icon="heart"></b-icon>
+    <b-badge variant="light">{{ likes }}</b-badge>
+  </b-btn>
 </template>
 
 <script>

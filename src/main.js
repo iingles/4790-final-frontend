@@ -72,6 +72,8 @@ const apolloProvider = new VueApollo({
   defaultClient: apolloClient
 })
 
+export const bus = new Vue()
+
 new Vue({
   store,
   router,

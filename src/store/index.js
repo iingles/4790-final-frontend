@@ -29,11 +29,14 @@ export default new Vuex.Store({
         auth: false,
         token: '',
         id: '',
-        feedstack: ''
+        feedstack: []
       }
     },
     loadFeed (state, feedStack) {
       state.user.feedStack = feedStack
+    },
+    newPost (state, postData) {
+      state.user.feedStack.unshift(postData)
     }
   },
   actions: {
@@ -42,6 +45,9 @@ export default new Vuex.Store({
     },
     loadFeed ({ commit }, feedStack) {
       commit('loadFeed', feedStack)
+    },
+    newPost ({ commit }, postData) {
+      commit('newPost', postData)
     },
     logout ({ commit }, authData) {
       commit('removeAuth', authData)

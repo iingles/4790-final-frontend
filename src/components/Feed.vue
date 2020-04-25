@@ -42,6 +42,7 @@
 <script>
 
 import SinglePost from './posts/SinglePost'
+import { bus } from '../main'
 
 export default {
   data: () => {
@@ -54,25 +55,43 @@ export default {
   components: {
     SinglePost
   },
+  created () {
+    bus.$on('deleted', (postId) => {
+      const vm = this
+      // Subscriptions aren't working the way I want, so remove the post from the
+      // feedStack manually for now
+      if (vm.feedStack.find(el => el._id === postId)) {
+        const idx = vm.feedStack.findIndex(el => el._id === postId)
+        vm.feedStack.splice(idx, 1)
+      }
+    })
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.feedStack = this.$store.getters.feed
+    })
+  },
   watch: {
-    $route: 
+    $route: 'setFeedStack'
   },
   methods: {
-    setFeedStack (result) {
+    setFeedStack ({ data }) {
       const vm = this
-      vm.feedStack = result.data.posts.posts
+      this.$store.dispatch('loadFeed', data.posts.posts)
+      vm.feedStack = this.$store.getters.feed
     },
     onPostAdded (previousResult, { subscriptionData }) {
       const vm = this
       const newPost = subscriptionData.data.newPost
-      vm.feedStack = [newPost, ...vm.feedStack]
 
+      this.$store.dispatch('newPost', newPost)
+      vm.feedStack = this.$store.getters.feed
       return vm.feedStack
     },
     onPostUpdated (previousPostData, { subscriptionData }) {
       const vm = this
       const prevId = subscriptionData.data.updatePost._id
-      // console.log(vm.feedStack)
+
       if (vm.feedStack.find(el => el._id === prevId)) {
         // Just to make sure that the edited post shows up,
         // Find out if its currently being displayed (in the feed stack)
