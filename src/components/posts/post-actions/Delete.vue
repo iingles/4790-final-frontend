@@ -2,12 +2,24 @@
     <div>
         <b-btn variant="link" @click="showModal"><b-icon icon="trash"></b-icon>Delete</b-btn>
 
-        <b-modal :ref="`${postId}-modal-delete`"  centered title="Delete Post">
-            <p>Are you sure you want to delete this post?</p>
-            <template slot="modal-footer">
-                <b-btn @click="hideModal">Cancel</b-btn>
-                <b-btn @click="deleteOnePost">Delete</b-btn>
-            </template>
+        <b-modal hide-footer :ref="`${postId}-modal-delete`"  centered title="Delete Post">
+            <ApolloMutation
+            :mutation="require('../../../graphql/DeletePost.gql')"
+            :variables="{
+              id: postId
+             }"
+             @done="hideModal()"
+             @error="error()"
+            >
+              <p>Are you sure you want to delete this post?</p>
+              <template  v-slot="{ mutate }" >
+                  <b-btn @click="hideModal">Cancel</b-btn>
+                  <b-btn @click.prevent="mutate()">Delete</b-btn>
+              </template>
+              <template v-if="errorMsg">
+                {{ errorMsg }}
+              </template>
+            </ApolloMutation>
         </b-modal>
     </div>
 </template>
@@ -17,6 +29,11 @@ export default {
   props: {
     postId: String,
     token: String
+  },
+  data: () => {
+    return {
+      errorMsg: ''
+    }
   },
   methods: {
     showModal () {
@@ -29,36 +46,9 @@ export default {
       this.$refs[`${vm.postId}-modal-delete`].hide()
     },
 
-    deleteOnePost () {
+    error (err) {
       const vm = this
-
-      const graphqlQuery = {
-        query: `
-            mutation {
-                deleteOnePost(id: "${vm.postId}")
-            }
-            
-        `
-      }
-
-      fetch('http://localhost:4000/graphql', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${vm.token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(graphqlQuery)
-      })
-        .then(res => {
-          return res.json()
-        })
-        .then(resData => {
-          if (resData.errors) {
-            throw new Error('Failed to delete post!')
-          }
-          vm.hideModal()
-        })
-        .catch(error => error)
+      vm.errorMsg = err
     }
   }
 }

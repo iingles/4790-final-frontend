@@ -1,0 +1,5 @@
+subscription deletedPost {
+	deletedPost{
+        id
+    }
+}
