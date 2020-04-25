@@ -18,7 +18,7 @@
               >
               </b-textarea>
               <template v-if="content !== postData.content && postData.content !== ''">
-                <b-button type="submit" class="align-self-end" pill variant="primary">Post</b-button>
+                <b-button type="submit" class="mt-4 align-self-end" pill variant="primary">Post</b-button>
               </template>
           </b-form>
         </template>

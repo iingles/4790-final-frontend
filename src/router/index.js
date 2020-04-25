@@ -113,6 +113,9 @@ const router = new VueRouter({
 // Logic for "auth" routes
 
 router.beforeEach((to, from, next) => {
+  // Make sure that the window goes to the top with every route change
+  window.scrollTo(0, 0)
+
   // Check to see if the route requires the user to be authenticated
   if (to.matched.some(route => route.meta.auth)) {
     // If there is no token, redirect to login

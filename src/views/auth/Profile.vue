@@ -96,6 +96,7 @@ export default {
         posts {
           _id
         }
+        backgroundImageUrl
       }
     }`
       }
@@ -123,7 +124,7 @@ export default {
           vm.following = resData.data.getUser.following
           vm.user = userData
 
-          vm.user.backgroundImageUrl = 'https://isaac_j_ingles.keybase.pub/user-banners/mario-banner.jpg'
+          // vm.user.backgroundImageUrl = 'https://isaac_j_ingles.keybase.pub/user-banners/mario-banner.jpg'
         })
         .catch(err => {
           console.log(err)
