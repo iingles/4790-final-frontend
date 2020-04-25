@@ -30,7 +30,7 @@
         <b-col cols="12" sm="12" md="5" lg="3" class="mt-2" justify-self="end">
           <template v-if="loggedInUser === this.$route.params.id">
               <EditProfile
-              :user="user"
+              :userData="user"
               />
           </template>
           <template v-else>
@@ -80,6 +80,7 @@ export default {
         query: `{
       getUser(_id:"${this.$route.params.id}") {
         _id
+        email
         firstName
         lastName
         bio
