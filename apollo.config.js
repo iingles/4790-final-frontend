@@ -16,7 +16,7 @@ module.exports = {
     // name: env.VUE_APP_APOLLO_ENGINE_SERVICE,
     localSchemaFile: path.resolve(__dirname, './schema.json'),
     endpoint: {
-      url: 'http://localhost:4000/graphql', // defaults to http://localhost:4000
+      url: 'http://206.189.215.72:4000/graphql', // defaults to http://localhost:4000
       headers: {
         // optional
         // authorization: 'Bearer lkjfalkfjadkfjeopknavadf'

@@ -26,7 +26,7 @@ Vue.config.productionTip = false
 
 const httpLink = new HttpLink({
   // You should use an absolute URL here
-  uri: 'http://localhost:4000/graphql',
+  uri: 'http://206.189.215.72:4000/graphql',
   credentials: 'include',
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -35,7 +35,7 @@ const httpLink = new HttpLink({
 
 // Create the subscription websocket link
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:4000/graphql',
+  uri: 'ws://206.189.215.72:4000/graphql',
   options: {
     reconnect: true,
     timeout: 30000,
