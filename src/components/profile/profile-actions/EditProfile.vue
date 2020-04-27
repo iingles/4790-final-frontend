@@ -13,6 +13,7 @@
                     bio: userInput.bio,
                     status: userInput.status
                 }"
+                @done="editProfileModal.hide()"
             >
                 <template v-slot="{ mutate }">
                     <b-form @submit.prevent="mutate()">
@@ -62,7 +63,7 @@
                             >
                             </b-form-textarea>
                         </b-form-group>
-                        <b-btn type="submit" pill>Cancel</b-btn>
+                        <b-btn type="submit" @click="editProfileModal.hide()" pill>Cancel</b-btn>
                         <b-btn type="submit" pill variant="primary">Submit</b-btn>
                     </b-form>
                 </template>
@@ -89,7 +90,6 @@ export default {
   watch: {
     userData () {
       this.userInput = this.userData
-      console.log(this.userInput)
     }
   }
 }
