@@ -14,6 +14,11 @@
         />
         <ApolloSubscribeToMore
           :document="require('../graphql/DeletePostSub.gql')"
+          :updateQuery="onPostDeleted"
+        />
+        <ApolloSubscribeToMore
+        :document="require('../graphql/UpdateLikeSub.gql')"
+        :updateQuery="onLikesUpdated"
         />
         <template v-slot="{ result: { error, data }, isLoading }">
           <!-- Loading -->
@@ -56,8 +61,8 @@ export default {
     SinglePost
   },
   created () {
+    const vm = this
     bus.$on('deleted', (postId) => {
-      const vm = this
       // Subscriptions aren't working the way I want, so remove the post from the
       // feedStack manually for now
       if (vm.feedStack.find(el => el._id === postId)) {
@@ -101,8 +106,9 @@ export default {
       }
     },
     onPostDeleted (prev, { subscriptionData }) {
-      console.log('deleted')
-      console.log(subscriptionData)
+    },
+    onLikesUpdated (prev, { subscriptionData }) {
+
     }
   }
 }

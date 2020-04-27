@@ -37,6 +37,10 @@ export default new Vuex.Store({
     },
     newPost (state, postData) {
       state.user.feedStack.unshift(postData)
+    },
+    updatePost (state, postData) {
+      const postIndex = state.user.feedstack.findIndex(el => el._id === postData._id)
+      state.user.feedStack[postIndex] = postData
     }
   },
   actions: {
@@ -48,6 +52,9 @@ export default new Vuex.Store({
     },
     newPost ({ commit }, postData) {
       commit('newPost', postData)
+    },
+    updatePost ({ commit }, postData) {
+      commit('updatePost', postData)
     },
     logout ({ commit }, authData) {
       commit('removeAuth', authData)

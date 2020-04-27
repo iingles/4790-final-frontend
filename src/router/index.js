@@ -19,7 +19,7 @@ const routes = [
     name: 'Login',
     components: {
       default: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
-      SidebarView: () => import(/* webpackChunkName: "News" */ '../components/News.vue')
+      SidebarView: () => import(/* webpackChunkName: "DemoUsers" */ '../components/DemoUsers.vue')
     }
   },
   {
@@ -36,7 +36,8 @@ const routes = [
     },
     components: {
       default: () => import(/* webpackChunkName: "Home" */ '../views/auth/Home.vue'),
-      SidebarView: () => import(/* webpackChunkName: "News" */ '../components/News.vue')
+      SidebarView: () => import(/* webpackChunkName: "News" */ '../components/News.vue'),
+      MenuView: () => import(/* webpackChunkName: "Menu" */'../components/shared/MainMenu.vue')
     }
   },
   {
@@ -47,7 +48,8 @@ const routes = [
     },
     components: {
       default: () => import(/* webpackChunkName: "Settings" */ '../views/auth/Settings.vue'),
-      SidebarView: () => import(/* webpackChunkName: "AccountSettings" */ '../components/AccountSettings.vue')
+      SidebarView: () => import(/* webpackChunkName: "AccountSettings" */ '../components/AccountSettings.vue'),
+      MenuView: () => import(/* webpackChunkName: "Menu" */'../components/shared/MainMenu.vue')
     }
   },
   {
@@ -58,7 +60,8 @@ const routes = [
     },
     components: {
       default: () => import(/* webpackChunkName: "Notifications" */ '../views/auth/Notifications.vue'),
-      SidebarView: () => import(/* webpackChunkName: "Trending" */ '../components/Trending.vue')
+      SidebarView: () => import(/* webpackChunkName: "Trending" */ '../components/Trending.vue'),
+      MenuView: () => import(/* webpackChunkName: "Menu" */'../components/shared/MainMenu.vue')
     }
   },
   {
@@ -69,7 +72,8 @@ const routes = [
     },
     components: {
       default: () => import(/* webpackChunkName: "Messages" */ '../views/auth/Messages.vue'),
-      SidebarView: () => import(/* webpackChunkName: "MessagePane" */ '../components/MessagePane.vue')
+      SidebarView: () => import(/* webpackChunkName: "MessagePane" */ '../components/MessagePane.vue'),
+      MenuView: () => import(/* webpackChunkName: "Menu" */'../components/shared/MainMenu.vue')
     }
   },
   {
@@ -80,7 +84,8 @@ const routes = [
     },
     components: {
       default: () => import(/* webpackChunkName: "Profile" */ '../views/auth/Profile.vue'),
-      SidebarView: () => import(/* webpackChunkName: "Trending" */ '../components/Trending.vue')
+      SidebarView: () => import(/* webpackChunkName: "Trending" */ '../components/Trending.vue'),
+      MenuView: () => import(/* webpackChunkName: "Menu" */'../components/shared/MainMenu.vue')
     }
   },
   {
@@ -91,7 +96,8 @@ const routes = [
     },
     components: {
       default: () => import(/* webpackChunkName: "Help" */ '../views/auth/Help.vue'),
-      SidebarView: () => import(/* webpackChunkName: "HelpInfo" */ '../components/HelpInfo.vue')
+      SidebarView: () => import(/* webpackChunkName: "HelpInfo" */ '../components/HelpInfo.vue'),
+      MenuView: () => import(/* webpackChunkName: "Menu" */'../components/shared/MainMenu.vue')
     }
   },
   {

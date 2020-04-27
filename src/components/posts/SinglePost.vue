@@ -41,6 +41,7 @@
             />
             <Like
             :postId="post._id"
+            :likes="post.likes"
             :userId="userId"
             :token="token"
             />

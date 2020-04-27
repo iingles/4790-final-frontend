@@ -1,5 +1,3 @@
 subscription deletedPost {
-	deletedPost{
-        id
-    }
+	deletedPost 
 }

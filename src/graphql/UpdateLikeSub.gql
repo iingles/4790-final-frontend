@@ -1,0 +1,8 @@
+subscription likesUpdated {
+    likesUpdated {
+       _id
+       likes {
+           _id
+       }
+    }
+}

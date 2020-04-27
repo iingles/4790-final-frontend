@@ -1,5 +1,5 @@
 mutation updateLikes ($postId: ID!, $userId: ID!, $action: String!)  {
     updateLikes(postId: $postId, likesInput: { userId: $userId, action: $action }) {
-       likes
+        _id
     }
 }

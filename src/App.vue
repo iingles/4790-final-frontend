@@ -4,7 +4,7 @@
     <b-container class="mt-5">
       <b-row d-flex flex-direction-column>
         <b-col cols="12" sm="1" md="1" lg="2">
-          <MainMenu v-if="this.$store.getters.user.auth" />
+          <router-view class="menu-view" name="MenuView" />
         </b-col>
           <router-view />
         <b-col cols="12" sm="12" md="11" lg="4">
@@ -19,12 +19,10 @@
 
 <script>
 import Navbar from './components/shared/Navbar'
-import MainMenu from './components/shared/MainMenu'
 
 export default {
   components: {
-    Navbar,
-    MainMenu
+    Navbar
   }
 }
 </script>

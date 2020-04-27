@@ -11,6 +11,13 @@ query posts {
           photoSm
       }
       updatedAt
+      likes {
+        _id
+      }
+      replies {
+        _id
+      }
+      media
     }
   }
 }

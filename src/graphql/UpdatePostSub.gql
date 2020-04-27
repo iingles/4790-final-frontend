@@ -3,6 +3,7 @@ subscription updatePost {
      _id
      content
      createdAt
+     updatedAt
      creator {
          _id
          firstName
