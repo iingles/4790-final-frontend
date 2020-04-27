@@ -16,7 +16,7 @@
                     <p>Are you sure you want to delete this post?</p>
                   </b-row>
                   <b-row class="d-flex" align-h="end">
-                    <b-btn pill class="mr-3" @click="hideModal">Cancel</b-btn>
+                    <b-btn pill class="mr-3" @click="hideModal()">Cancel</b-btn>
                     <b-btn pill variant="primary" @click.prevent="mutate()">Delete</b-btn>
                   </b-row>
                 </div>

@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import EditProfile from "../../components/profile/profile-actions/EditProfile";
-import FollowToggle from "../../components/profile/profile-actions/FollowToggle";
+import EditProfile from '../../components/profile/profile-actions/EditProfile'
+import FollowToggle from '../../components/profile/profile-actions/FollowToggle'
 
 export default {
   components: {
@@ -61,24 +61,24 @@ export default {
   data: () => {
     return {
       user: {},
-      token: localStorage.getItem("token"),
+      token: localStorage.getItem('token'),
       followers: [],
       following: [],
-      loggedInUser: localStorage.getItem("userId")
-    };
+      loggedInUser: localStorage.getItem('userId')
+    }
   },
-  created() {
-    this.getUserInfo();
+  created () {
+    this.getUserInfo()
   },
   watch: {
     // Watch for route change and refresh the info each time
-    $route: "getUserInfo"
+    $route: 'getUserInfo'
   },
   methods: {
-    getUserInfo() {
+    getUserInfo () {
       // Fetch the user info for the profile page
-      let userData;
-      const vm = this;
+      let userData
+      const vm = this
       const graphQLQuery = {
         query: `{
       getUser(_id:"${this.$route.params.id}") {
@@ -102,39 +102,39 @@ export default {
         backgroundImageUrl
       }
     }`
-      };
+      }
 
-      fetch("http://206.189.215.72:4000/graphql", {
-        method: "POST",
+      fetch('http://206.189.215.72:4000/graphql', {
+        method: 'POST',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json"
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(graphQLQuery)
       })
         .then(res => {
-          return res.json();
+          return res.json()
         })
         .then(resData => {
           if (resData.errors) {
-            throw new Error("Failed to fetch user");
+            throw new Error('Failed to fetch user')
           }
           // loggedInUser = localStorage.getItem('userId')
 
-          userData = resData.data.getUser;
+          userData = resData.data.getUser
 
-          vm.followers = resData.data.getUser.followers;
-          vm.following = resData.data.getUser.following;
-          vm.user = userData;
+          vm.followers = resData.data.getUser.followers
+          vm.following = resData.data.getUser.following
+          vm.user = userData
 
           // vm.user.backgroundImageUrl = 'https://isaac_j_ingles.keybase.pub/user-banners/mario-banner.jpg'
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

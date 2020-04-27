@@ -27,8 +27,7 @@
 
     .dark-grad {
         background: rgb(62,80,91);
-        background: radial-gradient(circle, rgba(62,80,91,1) 0%, rgba(38,65,60,1) 35%, rgba(26,29,26,1) 100%);
-        color: #fff;
+              color: #fff;
     }
 
 </style>

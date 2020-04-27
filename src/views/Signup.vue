@@ -34,23 +34,23 @@ export default {
   data: () => {
     return {
       userInput: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        rePass: ""
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        rePass: ''
       }
-    };
+    }
   },
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter (to, from, next) {
     // If there is a token, redirect to home.  Should modify this later to check for token expiry.
-    if (localStorage.getItem("token")) next("/home");
-    next();
+    if (localStorage.getItem('token')) next('/home')
+    next()
   },
   methods: {
-    signUpHandler(event) {
-      const vm = this;
-      event.preventDefault();
+    signUpHandler (event) {
+      const vm = this
+      event.preventDefault()
 
       const graphQuery = {
         query: `
@@ -66,37 +66,37 @@ export default {
                 }
             }
         `
-      };
-      fetch("http://206.189.215.72:4000/graphql", {
-        method: "POST",
+      }
+      fetch('http://206.189.215.72:4000/graphql', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(graphQuery)
       })
         .then(res => {
-          return res.json();
+          return res.json()
         })
         .then(resData => {
           if (resData.errors && resData.errors[0].status === 422) {
             throw new Error(
               "validation failed.  Make sure that email address isn't used yet!"
-            );
+            )
           }
           if (resData.errors) {
-            console.log(resData.errors);
-            throw new Error("User creation failed.");
+            console.log(resData.errors)
+            throw new Error('User creation failed.')
           }
 
           // If everything was successful, redirect the user to Login
-          vm.$router.push("Login");
+          vm.$router.push('Login')
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

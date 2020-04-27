@@ -16,13 +16,13 @@ export default {
     profileId: String
   },
   methods: {
-    changeFollow(id, act) {
-      console.log(id, act, localStorage.getItem("userId"));
+    changeFollow (id, act) {
+      console.log(id, act, localStorage.getItem('userId'))
       const graphQLQuery = {
         query: `
           mutation {
             updateFollows(id: "${localStorage.getItem(
-              "userId"
+              'userId'
             )}", followInput: { _id:"${
           this.$route.params.id
         }", action: "${act}"} ) {
@@ -31,26 +31,26 @@ export default {
             }
           }
         }`
-      };
+      }
 
-      fetch("http://206.189.215.72:4000/graphql", {
-        method: "POST",
+      fetch('http://206.189.215.72:4000/graphql', {
+        method: 'POST',
         body: JSON.stringify(graphQLQuery),
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json"
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
         }
       })
         .then(res => {
-          return res.json();
+          return res.json()
         })
         .then(resData => {
           if (resData.errors) {
-            throw new Error("Failed to update followers");
+            throw new Error('Failed to update followers')
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     }
   }
-};
+}
 </script>
