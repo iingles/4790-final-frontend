@@ -27,6 +27,7 @@ Vue.config.productionTip = false
 const httpLink = new HttpLink({
   // You should use an absolute URL here
   uri: 'http://206.189.215.72:4000/graphql',
+  // uri: 'http://localhost:4000/graphql',
   credentials: 'include',
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`

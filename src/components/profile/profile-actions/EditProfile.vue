@@ -13,7 +13,8 @@
                     bio: userInput.bio,
                     status: userInput.status
                 }"
-                @done="editProfileModal.hide()"
+                @done="$bvModal.hide('editProfileModal')"
+                @error="$bvModal.hide('editProfileModal')"
             >
                 <template v-slot="{ mutate }">
                     <b-form @submit.prevent="mutate()">
@@ -63,7 +64,7 @@
                             >
                             </b-form-textarea>
                         </b-form-group>
-                        <b-btn type="submit" @click="editProfileModal.hide()" pill>Cancel</b-btn>
+                        <b-btn type="submit" @click.prevent="$bvModal.hide('editProfileModal')" pill>Cancel</b-btn>
                         <b-btn type="submit" pill variant="primary">Submit</b-btn>
                     </b-form>
                 </template>
